@@ -155,12 +155,12 @@
   <section id="skills">
     <h2>Skills</h2>
     <div class="grid">
-      <div class="skill-card">☁️ AWS & GCP</div>
+      <div class="skill-card">☁️ AWS</div>
       <div class="skill-card">⚙️ Terraform & CloudFormation</div>
       <div class="skill-card">🐳 Docker & Kubernetes</div>
-      <div class="skill-card">🔧 Jenkins & GitHub Actions</div>
+      <div class="skill-card">🔧 Jenkins & GitHub Actions ArgoCD</div>
       <div class="skill-card">📜 Bash, Python, Groovy</div>
-      <div class="skill-card">📊 Prometheus & Grafana</div>
+      <div class="skill-card">📊 Prometheus & Grafana Cloudformation</div>
     </div>
   </section>
 
