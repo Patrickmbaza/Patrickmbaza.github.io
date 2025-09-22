@@ -6,88 +6,100 @@
   <title>MBAZA GOTEH PATRICK | Portfolio</title>
   <style>
     :root {
-      --primary: #2563eb;
-      --secondary: #9333ea;
+      --primary: #3b82f6;
+      --secondary: #a855f7;
       --dark: #0f172a;
+      --darker: #0a0f1e;
       --light: #f8fafc;
-      --gray: #64748b;
-      --accent: #ffda79;
+      --gray: #94a3b8;
+      --accent: #fbbf24;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; scroll-behavior: smooth; }
-    body { background: var(--light); color: var(--dark); line-height: 1.6; }
+    body { background: var(--darker); color: var(--light); line-height: 1.7; }
 
     /* Header */
     header {
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #fff;
       text-align: center;
-      padding: 5rem 1rem 3.5rem;
+      padding: 6rem 1rem 4rem;
       position: relative;
-      border-bottom-left-radius: 50% 20%;
-      border-bottom-right-radius: 50% 20%;
+      border-bottom-left-radius: 50% 15%;
+      border-bottom-right-radius: 50% 15%;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
-    header h1 { font-size: 3rem; margin-bottom: 0.5rem; font-weight: bold; letter-spacing: 1px; }
-    header p { font-size: 1.3rem; color: #e2e8f0; }
+    header h1 { font-size: 3.2rem; margin-bottom: 0.5rem; font-weight: bold; letter-spacing: 1px; }
+    header p { font-size: 1.4rem; color: #e0e7ff; }
+
     .resume-btn {
-      margin-top: 1.8rem;
+      margin-top: 2rem;
       background: linear-gradient(90deg, var(--secondary), var(--primary));
       color: #fff;
-      padding: 0.8rem 1.8rem;
-      border-radius: 30px;
+      padding: 0.9rem 2rem;
+      border-radius: 40px;
       font-weight: bold;
       text-decoration: none;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
       transition: all 0.3s ease-in-out;
       display: inline-block;
     }
-    .resume-btn:hover { transform: scale(1.07); background: var(--accent); color: #000; }
+    .resume-btn:hover { transform: scale(1.08); background: var(--accent); color: #000; }
 
     .profile-pic {
-      width: 150px;
-      height: 150px;
+      width: 160px;
+      height: 160px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid #fff;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      border: 5px solid #fff;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
       margin-bottom: 1.5rem;
       transition: transform 0.3s;
     }
-    .profile-pic:hover { transform: scale(1.05); }
+    .profile-pic:hover { transform: scale(1.07); }
 
     /* Navbar */
     nav {
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.95);
       backdrop-filter: blur(6px);
       padding: 1rem;
       text-align: center;
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     }
     nav a {
       color: #fff;
-      margin: 0 20px;
+      margin: 0 18px;
       text-decoration: none;
       font-weight: 600;
       transition: color 0.3s;
     }
     nav a:hover { color: var(--accent); }
 
+    /* Sections */
     section {
       max-width: 1100px;
-      margin: 3rem auto;
-      padding: 2rem;
-      background: #fff;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      margin: 4rem auto;
+      padding: 2.5rem;
+      background: var(--dark);
+      border-radius: 18px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     h2 {
-      margin-bottom: 1.2rem;
-      color: var(--primary);
-      border-bottom: 3px solid var(--primary);
+      margin-bottom: 1.5rem;
+      color: var(--accent);
+      border-bottom: 3px solid var(--accent);
       display: inline-block;
-      font-size: 1.8rem;
+      font-size: 2rem;
     }
 
     /* About */
@@ -96,25 +108,25 @@
       color: var(--gray);
       margin-bottom: 1rem;
     }
-    #about strong { color: var(--dark); }
+    #about strong { color: var(--light); }
 
     /* Skills */
     #skills .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
     }
     .skill-card {
-      background: linear-gradient(135deg, #fff, #f1f5f9);
-      padding: 1rem;
+      background: linear-gradient(135deg, #1e293b, #111827);
+      padding: 1.3rem;
       border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       text-align: center;
       font-weight: bold;
-      color: var(--dark);
+      color: var(--light);
       transition: all 0.3s ease;
     }
-    .skill-card:hover { transform: translateY(-6px) scale(1.03); background: var(--accent); color: #000; }
+    .skill-card:hover { transform: translateY(-6px) scale(1.05); background: var(--accent); color: #000; }
 
     /* Projects */
     #projects .grid {
@@ -123,10 +135,10 @@
       gap: 2rem;
     }
     .project-card {
-      background: #fff;
+      background: #1e293b;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
       transition: transform 0.3s ease-in-out;
     }
     .project-card:hover { transform: translateY(-8px); }
@@ -149,20 +161,20 @@
       font-weight: bold;
       transition: all 0.3s;
     }
-    .code-btn { background: var(--dark); color: #fff; }
+    .code-btn { background: var(--primary); color: #fff; }
     .code-btn:hover { background: var(--accent); color: #000; }
 
     /* Contact */
     #contact p { margin: 0.6rem 0; font-size: 1.1rem; }
-    #contact a { color: var(--primary); text-decoration: none; font-weight: bold; }
+    #contact a { color: var(--accent); text-decoration: none; font-weight: bold; }
     #contact a:hover { color: var(--secondary); }
 
     footer {
       text-align: center;
       padding: 1.5rem;
-      background: var(--dark);
+      background: #0a0f1e;
       color: #fff;
-      margin-top: 2rem;
+      margin-top: 3rem;
     }
     footer a { color: var(--accent); text-decoration: none; }
   </style>
@@ -275,6 +287,22 @@
   <footer>
     <p>&copy; 2025 Mbaza Goteh Patrick | Built & Hosted on <a href="https://pages.github.com/">GitHub Pages</a></p>
   </footer>
+
+  <script>
+    // Intersection Observer for fade/slide animations
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 
 </body>
 </html>
