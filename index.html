@@ -13,6 +13,8 @@
       --light: #f8fafc;
       --gray: #94a3b8;
       --accent: #fbbf24;
+      --ai-color: #10b981;
+      --ai-glow: rgba(16, 185, 129, 0.25);
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; scroll-behavior: smooth; }
@@ -110,6 +112,29 @@
     }
     #about strong { color: var(--light); }
 
+    /* AI Skills Badge */
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
+      border: 1px solid var(--ai-color);
+      color: var(--ai-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-left: 0.4rem;
+      vertical-align: middle;
+      box-shadow: 0 0 10px var(--ai-glow);
+      animation: pulse-ai 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-ai {
+      0%, 100% { box-shadow: 0 0 8px var(--ai-glow); }
+      50% { box-shadow: 0 0 20px rgba(16,185,129,0.5); }
+    }
+
     /* Skills */
     #skills .grid {
       display: grid;
@@ -127,6 +152,31 @@
       transition: all 0.3s ease;
     }
     .skill-card:hover { transform: translateY(-6px) scale(1.05); background: var(--accent); color: #000; }
+
+    /* AI Skill Card – special styling */
+    .skill-card.ai-skill {
+      background: linear-gradient(135deg, #0d2e22, #0f172a);
+      border: 1px solid var(--ai-color);
+      box-shadow: 0 4px 20px var(--ai-glow);
+      color: var(--ai-color);
+    }
+    .skill-card.ai-skill:hover {
+      background: var(--ai-color);
+      color: #000;
+      box-shadow: 0 8px 30px rgba(16,185,129,0.4);
+      border-color: transparent;
+    }
+
+    /* Skills section label */
+    .skills-category-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin: 2rem 0 0.8rem;
+    }
+    .skills-category-label.ai-label { color: var(--ai-color); }
 
     /* Projects */
     #projects .grid {
@@ -164,6 +214,61 @@
     .code-btn { background: var(--primary); color: #fff; }
     .code-btn:hover { background: var(--accent); color: #000; }
 
+    /* AI Project Card – special green accent */
+    .project-card.ai-project {
+      border: 1px solid var(--ai-color);
+      box-shadow: 0 6px 25px var(--ai-glow);
+    }
+    .project-card.ai-project h3 {
+      background: linear-gradient(135deg, #064e3b, #065f46);
+      position: relative;
+    }
+    .project-card.ai-project h3::after {
+      content: "🤖 AI";
+      position: absolute;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--ai-color);
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 900;
+      padding: 0.2rem 0.55rem;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+    }
+    .project-card.ai-project:hover {
+      box-shadow: 0 12px 35px rgba(16,185,129,0.35);
+    }
+    .project-card.ai-project .code-btn {
+      background: var(--ai-color);
+      color: #000;
+    }
+    .project-card.ai-project .code-btn:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    /* Projects section divider */
+    .projects-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0 1.5rem;
+      color: var(--ai-color);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .projects-divider::before,
+    .projects-divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--ai-color), transparent);
+    }
+
     /* Contact */
     #contact p { margin: 0.6rem 0; font-size: 1.1rem; }
     #contact a { color: var(--accent); text-decoration: none; font-weight: bold; }
@@ -184,7 +289,7 @@
   <header>
     <img src="profile.jpg.webp" alt="Goteh Mbaza Patrick" class="profile-pic">
     <h1>GOTEH MBAZA PATRICK</h1>
-    <p>DevOps Engineer | Cloud | Kubernetes | Automation</p>
+    <p>DevOps Engineer | Cloud | Kubernetes | Automation | <span style="color:#6ee7b7;">AI Engineering</span></p>
     <a href="resume.pdf" download class="resume-btn">📄 Download Resume</a>
   </header>
 
@@ -214,10 +319,18 @@
       reliable deployments, efficient scaling, and robust security practices across both 
       AWS and Azure cloud platforms.
     </p>
+    <p>
+      Most recently, I have expanded into <strong>AI Engineering</strong> <span class="ai-badge">✨ New</span>, building 
+      intelligent SaaS applications, AI-augmented web experiences, and LLM-powered tools 
+      that combine the reliability of DevOps infrastructure with the power of modern 
+      artificial intelligence APIs and frameworks.
+    </p>
   </section>
 
   <section id="skills">
     <h2>Skills</h2>
+
+    <p class="skills-category-label">Core DevOps & Cloud</p>
     <div class="grid">
       <div class="skill-card">☁️ AWS & Azure DevOps</div>
       <div class="skill-card">⚙️ Terraform, Ansible & CloudFormation</div>
@@ -226,10 +339,22 @@
       <div class="skill-card">📜 Bash/Shell, Python, Groovy, Java, Node.js</div>
       <div class="skill-card">📊 Prometheus, Grafana, CloudWatch</div>
     </div>
+
+    <p class="skills-category-label ai-label" style="margin-top:2rem;">✨ AI Engineering (Newly Acquired)</p>
+    <div class="grid">
+      <div class="skill-card ai-skill">🤖 LLM Integration & Prompt Engineering</div>
+      <div class="skill-card ai-skill">🧠 AI-Powered SaaS Architecture</div>
+      <div class="skill-card ai-skill">🔗 OpenAI / Anthropic API Development</div>
+      <div class="skill-card ai-skill">🛡️ AI-Augmented Security & Cyber Analysis</div>
+      <div class="skill-card ai-skill">🚀 Full-Stack AI Web Applications</div>
+      <div class="skill-card ai-skill">📡 RAG Pipelines & AI Workflow Automation</div>
+    </div>
   </section>
 
   <section id="projects">
     <h2>Projects</h2>
+
+    <!-- Existing DevOps Projects -->
     <div class="grid">
       <div class="project-card">
         <h3>3-Tier Chat App</h3>
@@ -275,12 +400,12 @@
       </div>
       <div class="project-card">
         <h3>AutoDock-Deployer</h3>
-        <p>A production-grade Bash automation script that automates the end-to-end deployment of Dockerized applications to remote Linux servers</p>
+        <p>A production-grade Bash automation script that automates the end-to-end deployment of Dockerized applications to remote Linux servers.</p>
         <div class="project-links">
           <a href="https://github.com/Patrickmbaza/AutoDock-Deployer.git" target="_blank" class="code-btn">Source Code</a>
         </div>
       </div>
-        <div class="project-card">
+      <div class="project-card">
         <h3>Blue/Green Deployment with Auto-Failover & Slack Alerting</h3>
         <p>Engineered a production-ready blue/green deployment system implementing zero-downtime updates with automatic failover and real-time Slack notifications. Features intelligent traffic routing, health monitoring, and instant alerts for failover events and high error rates. Includes chaos engineering endpoints for resilience testing and ensures seamless deployment transitions with 100% service availability.</p>
         <div class="project-links">
@@ -289,16 +414,51 @@
       </div>
       <div class="project-card">
         <h3>Local Linux VPC Emulator</h3>
-        <p>A bash-based Virtual Private Cloud (VPC) emulation environment that replicates cloud networking features on a Linux host. Perfect for development, testing, and learning cloud networking concepts without cloud costs. 🚀 Features</p>
+        <p>A bash-based Virtual Private Cloud (VPC) emulation environment that replicates cloud networking features on a Linux host. Perfect for development, testing, and learning cloud networking concepts without cloud costs.</p>
         <div class="project-links">
           <a href="https://github.com/Patrickmbaza/Local-Linux-VPC-emulator.git" target="_blank" class="code-btn">Source Code</a>
         </div>
       </div>
       <div class="project-card">
-        <h3> Azure DevOps CI/CD Pipeline for Multi-Environment Deployments</h3>
+        <h3>Azure DevOps CI/CD Pipeline for Multi-Environment Deployments</h3>
         <p>Implemented a complete Azure DevOps CI/CD pipeline for automated build, test, and deployment across multiple environments (Dev, QA, Production). Configured YAML-based pipeline definitions, integrated automated testing, and established deployment gates with approval workflows. Features infrastructure provisioning, container registry integration, and comprehensive monitoring setup.</p>
         <div class="project-links">
           <a href="https://github.com/Patrickmbaza/Azure-repo.git" target="_blank" class="code-btn">Source Code</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI Projects Divider -->
+    <div class="projects-divider">✨ AI Engineering Projects</div>
+
+    <!-- New AI Projects -->
+    <div class="grid">
+      <div class="project-card ai-project">
+        <h3>Consultation SaaS App</h3>
+        <p>A full-featured AI-powered consultation SaaS platform enabling intelligent, context-aware interactions between service providers and clients. Built with modern web technologies and integrated LLM capabilities for smart scheduling, automated responses, and data-driven consultation insights.</p>
+        <div class="project-links">
+          <a href="https://github.com/Patrickmbaza/Consultation-SaaS-App.git" target="_blank" class="code-btn">Source Code</a>
+        </div>
+      </div>
+      <div class="project-card ai-project">
+        <h3>AI SaaS Application</h3>
+        <p>A production-ready AI SaaS platform leveraging large language model APIs to deliver intelligent features at scale. Architected with a focus on multi-tenancy, usage metering, and secure API key management — combining DevOps infrastructure expertise with cutting-edge AI integration.</p>
+        <div class="project-links">
+          <a href="https://github.com/Patrickmbaza/AI-SAAS-APPLICATION.git" target="_blank" class="code-btn">Source Code</a>
+        </div>
+      </div>
+      <div class="project-card ai-project">
+        <h3>AI-Augmented Web App</h3>
+        <p>A modern web application enhanced with AI capabilities — integrating natural language processing, smart recommendations, and real-time AI-driven interactions into a seamless user experience. Demonstrates the fusion of traditional full-stack development with the intelligence of modern AI models.</p>
+        <div class="project-links">
+          <a href="https://github.com/Patrickmbaza/AI-Augmented-Web-App.git" target="_blank" class="code-btn">Source Code</a>
+        </div>
+      </div>
+      <div class="project-card ai-project">
+        <h3>Cyber Analysis Project</h3>
+        <p>An AI-powered cybersecurity analysis tool that leverages machine learning and LLMs to detect threats, analyze security logs, and generate actionable intelligence reports. Bridges DevSecOps practices with AI-driven threat modeling for proactive infrastructure defense.</p>
+        <div class="project-links">
+          <a href="https://github.com/Patrickmbaza/Cyber_Analysis_Project.git" target="_blank" class="code-btn">Source Code</a>
         </div>
       </div>
     </div>
@@ -326,7 +486,7 @@
           entry.target.classList.add("visible");
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.05, rootMargin: "0px 0px -50px 0px" });
 
     sections.forEach(section => {
       observer.observe(section);
