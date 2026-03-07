@@ -1,337 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MBAZA GOTEH PATRICK | Portfolio</title>
-  <style>
-    :root {
-      --primary: #3b82f6;
-      --secondary: #a855f7;
-      --dark: #0f172a;
-      --darker: #0a0f1e;
-      --light: #f8fafc;
-      --gray: #94a3b8;
-      --accent: #fbbf24;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Segoe UI", Arial, sans-serif; scroll-behavior: smooth; }
-    body { background: var(--darker); color: var(--light); line-height: 1.7; }
+<title>GOTEH MBAZA PATRICK | DevOps & AI Engineer</title>
 
-    /* Header */
-    header {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      text-align: center;
-      padding: 6rem 1rem 4rem;
-      position: relative;
-      border-bottom-left-radius: 50% 15%;
-      border-bottom-right-radius: 50% 15%;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    }
-    header h1 { font-size: 3.2rem; margin-bottom: 0.5rem; font-weight: bold; letter-spacing: 1px; }
-    header p { font-size: 1.4rem; color: #e0e7ff; }
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-    .resume-btn {
-      margin-top: 2rem;
-      background: linear-gradient(90deg, var(--secondary), var(--primary));
-      color: #fff;
-      padding: 0.9rem 2rem;
-      border-radius: 40px;
-      font-weight: bold;
-      text-decoration: none;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-      transition: all 0.3s ease-in-out;
-      display: inline-block;
-    }
-    .resume-btn:hover { transform: scale(1.08); background: var(--accent); color: #000; }
+<style>
 
-    .profile-pic {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 5px solid #fff;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-      margin-bottom: 1.5rem;
-      transition: transform 0.3s;
-    }
-    .profile-pic:hover { transform: scale(1.07); }
+:root{
+--primary:#3b82f6;
+--secondary:#8b5cf6;
+--accent:#fbbf24;
+--dark:#0f172a;
+--darker:#020617;
+--card:#1e293b;
+--text:#e2e8f0;
+--gray:#94a3b8;
+}
 
-    /* Navbar */
-    nav {
-      background: rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(6px);
-      padding: 1rem;
-      text-align: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-    }
-    nav a {
-      color: #fff;
-      margin: 0 18px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s;
-    }
-    nav a:hover { color: var(--accent); }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+scroll-behavior:smooth;
+}
 
-    /* Sections */
-    section {
-      max-width: 1100px;
-      margin: 4rem auto;
-      padding: 2.5rem;
-      background: var(--dark);
-      border-radius: 18px;
-      box-shadow: 0 6px 25px rgba(0,0,0,0.4);
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s ease;
-    }
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    h2 {
-      margin-bottom: 1.5rem;
-      color: var(--accent);
-      border-bottom: 3px solid var(--accent);
-      display: inline-block;
-      font-size: 2rem;
-    }
+body{
+background:var(--darker);
+color:var(--text);
+line-height:1.6;
+}
 
-    /* About */
-    #about p {
-      font-size: 1.1rem;
-      color: var(--gray);
-      margin-bottom: 1rem;
-    }
-    #about strong { color: var(--light); }
+header{
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+text-align:center;
+padding:6rem 1rem 5rem;
+}
 
-    /* Skills */
-    #skills .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.5rem;
-    }
-    .skill-card {
-      background: linear-gradient(135deg, #1e293b, #111827);
-      padding: 1.3rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      text-align: center;
-      font-weight: bold;
-      color: var(--light);
-      transition: all 0.3s ease;
-    }
-    .skill-card:hover { transform: translateY(-6px) scale(1.05); background: var(--accent); color: #000; }
+header h1{
+font-size:3rem;
+margin-bottom:.5rem;
+}
 
-    /* Projects */
-    #projects .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
-    .project-card {
-      background: #1e293b;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.35);
-      transition: transform 0.3s ease-in-out;
-    }
-    .project-card:hover { transform: translateY(-8px); }
-    .project-card h3 {
-      padding: 1rem;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: #fff;
-      margin: 0;
-      font-size: 1.3rem;
-    }
-    .project-card p { padding: 1rem; color: var(--gray); }
-    .project-links { padding: 0 1rem 1.2rem; }
-    .project-links a {
-      display: inline-block;
-      margin-right: 10px;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: bold;
-      transition: all 0.3s;
-    }
-    .code-btn { background: var(--primary); color: #fff; }
-    .code-btn:hover { background: var(--accent); color: #000; }
+header p{
+font-size:1.3rem;
+}
 
-    /* Contact */
-    #contact p { margin: 0.6rem 0; font-size: 1.1rem; }
-    #contact a { color: var(--accent); text-decoration: none; font-weight: bold; }
-    #contact a:hover { color: var(--secondary); }
+.profile{
+width:160px;
+border-radius:50%;
+margin-bottom:1.5rem;
+border:5px solid white;
+}
 
-    footer {
-      text-align: center;
-      padding: 1.5rem;
-      background: #0a0f1e;
-      color: #fff;
-      margin-top: 3rem;
-    }
-    footer a { color: var(--accent); text-decoration: none; }
-  </style>
+.resume{
+margin-top:2rem;
+display:inline-block;
+padding:.8rem 2rem;
+background:var(--accent);
+border-radius:30px;
+color:black;
+font-weight:600;
+text-decoration:none;
+}
+
+nav{
+background:var(--dark);
+padding:1rem;
+position:sticky;
+top:0;
+z-index:1000;
+text-align:center;
+}
+
+nav a{
+margin:0 15px;
+text-decoration:none;
+color:white;
+font-weight:600;
+}
+
+nav a:hover{
+color:var(--accent);
+}
+
+section{
+max-width:1100px;
+margin:auto;
+padding:4rem 1rem;
+}
+
+h2{
+color:var(--accent);
+margin-bottom:1.5rem;
+font-size:2rem;
+}
+
+.about p{
+margin-bottom:1rem;
+color:var(--gray);
+}
+
+/* Skills */
+
+.skill{
+margin-bottom:1rem;
+}
+
+.skill-name{
+display:flex;
+justify-content:space-between;
+}
+
+.bar{
+height:10px;
+background:#1e293b;
+border-radius:20px;
+overflow:hidden;
+}
+
+.fill{
+height:100%;
+width:0;
+background:linear-gradient(90deg,var(--primary),var(--secondary));
+}
+
+/* Projects */
+
+.filters{
+text-align:center;
+margin-bottom:2rem;
+}
+
+.filters button{
+margin:5px;
+padding:.6rem 1.2rem;
+border:none;
+border-radius:20px;
+background:var(--primary);
+color:white;
+cursor:pointer;
+}
+
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:2rem;
+}
+
+.card{
+background:var(--card);
+border-radius:10px;
+overflow:hidden;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card h3{
+background:linear-gradient(135deg,var(--primary),var(--secondary));
+padding:1rem;
+}
+
+.card p{
+padding:1rem;
+color:var(--gray);
+}
+
+.card a{
+margin:1rem;
+display:inline-block;
+background:var(--primary);
+padding:.5rem 1rem;
+border-radius:5px;
+color:white;
+text-decoration:none;
+}
+
+/* AI section */
+
+.ai{
+background:var(--dark);
+border-radius:10px;
+padding:2rem;
+}
+
+/* GitHub graph */
+
+.github{
+text-align:center;
+}
+
+/* contact */
+
+.contact a{
+color:var(--accent);
+text-decoration:none;
+}
+
+/* footer */
+
+footer{
+text-align:center;
+padding:2rem;
+background:#020617;
+margin-top:3rem;
+}
+
+</style>
 </head>
+
 <body>
 
-  <header>
-    <img src="profile.jpg.webp" alt="Goteh Mbaza Patrick" class="profile-pic">
-    <h1>GOTEH MBAZA PATRICK</h1>
-    <p>DevOps Engineer | Cloud | Kubernetes | Automation</p>
-    <a href="resume.pdf" download class="resume-btn">📄 Download Resume</a>
-  </header>
+<header>
 
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
+<img src="profile.jpg" class="profile">
 
-  <section id="about">
-    <h2>About Me</h2>
-    <p>
-      I am a <strong>DevOps Engineer</strong> with <strong>4+ years</strong> of experience building 
-      scalable, secure, and automated infrastructure. I specialize in 
-      <strong>AWS Cloud</strong>, <strong>Azure DevOps</strong>, <strong>Kubernetes orchestration</strong>, 
-      and designing <strong>CI/CD pipelines</strong> for high-availability applications.
-    </p>
-    <p>
-      My passion lies in creating automated solutions that reduce manual overhead 
-      and accelerate delivery. I have hands-on experience with Infrastructure as Code 
-      (Terraform, CloudFormation), containerization (Docker, Kubernetes), and monitoring 
-      (Prometheus, Grafana, CloudWatch).
-    </p>
-    <p>
-      I thrive at the intersection of <strong>development and operations</strong>, ensuring 
-      reliable deployments, efficient scaling, and robust security practices across both 
-      AWS and Azure cloud platforms.
-    </p>
-  </section>
+<h1>GOTEH MBAZA PATRICK</h1>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="grid">
-      <div class="skill-card">☁️ AWS & Azure DevOps</div>
-      <div class="skill-card">⚙️ Terraform, Ansible & CloudFormation</div>
-      <div class="skill-card">🐳 Docker & Kubernetes (Helm)</div>
-      <div class="skill-card">🔧 Jenkins, GitHub Actions, Azure DevOps, SonarQube, ArgoCD</div>
-      <div class="skill-card">📜 Bash/Shell, Python, Groovy, Java, Node.js</div>
-      <div class="skill-card">📊 Prometheus, Grafana, CloudWatch</div>
-    </div>
-  </section>
+<p>DevOps & AI Engineer | Cloud Infrastructure | MLOps | Kubernetes</p>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="grid">
-      <div class="project-card">
-        <h3>3-Tier Chat App</h3>
-        <p>Built with Docker Compose, container networking, and multi-service orchestration for scalable real-time communication.</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/mychat-app-react-nodejs" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-      <div class="project-card">
-        <h3>Kubernetes Cluster Management</h3>
-        <p>Provisioned production-ready Kubernetes clusters with Terraform, integrated AWS ALB Ingress Controller for routing.</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/EKS_deployment_service_scripts" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-      <div class="project-card">
-        <h3>CI/CD Pipeline</h3>
-        <p>Automated deployment pipeline using Jenkins & GitHub, ensuring smooth integration and zero-downtime releases.</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/Patclass1" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-      <div class="project-card">
-        <h3>EasyShop - Modern E-commerce Platform</h3>
-        <p>Easyshop is a modern, full stack e-commerce platform built with Next.js 14, TypeScript and MongoDB. It features a beautiful UI with Tailwind CSS, secure authentication, real-time cart updates, and a seamless shopping experience.</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/E-commerce-app_EKS_Project" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-      <div class="project-card">
-        <h3>3-Tier-K8s-Project-GitOps</h3>
-        <p>3-Tier Kubernetes Project with GitOps, Dynamic PVC, and Route-53 Integration.</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/3-Tier-K8s-Project-GitOps.git" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-      <div class="project-card">
-        <h3>Amazon-DevSecOps</h3>
-        <p>Amazon Shopping Website CI/CD DevSecOps pipeline implementation with automated scans and deployments.</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/amazon-Devsecops.git" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-      <div class="project-card">
-        <h3>AutoDock-Deployer</h3>
-        <p>A production-grade Bash automation script that automates the end-to-end deployment of Dockerized applications to remote Linux servers</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/AutoDock-Deployer.git" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-        <div class="project-card">
-        <h3>Blue/Green Deployment with Auto-Failover & Slack Alerting</h3>
-        <p>Engineered a production-ready blue/green deployment system implementing zero-downtime updates with automatic failover and real-time Slack notifications. Features intelligent traffic routing, health monitoring, and instant alerts for failover events and high error rates. Includes chaos engineering endpoints for resilience testing and ensures seamless deployment transitions with 100% service availability.</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/blue-green-nginx-failover.git" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-      <div class="project-card">
-        <h3>Local Linux VPC Emulator</h3>
-        <p>A bash-based Virtual Private Cloud (VPC) emulation environment that replicates cloud networking features on a Linux host. Perfect for development, testing, and learning cloud networking concepts without cloud costs. 🚀 Features</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/Local-Linux-VPC-emulator.git" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-      <div class="project-card">
-        <h3> Azure DevOps CI/CD Pipeline for Multi-Environment Deployments</h3>
-        <p>Implemented a complete Azure DevOps CI/CD pipeline for automated build, test, and deployment across multiple environments (Dev, QA, Production). Configured YAML-based pipeline definitions, integrated automated testing, and established deployment gates with approval workflows. Features infrastructure provisioning, container registry integration, and comprehensive monitoring setup.</p>
-        <div class="project-links">
-          <a href="https://github.com/Patrickmbaza/Azure-repo.git" target="_blank" class="code-btn">Source Code</a>
-        </div>
-      </div>
-    </div>
-  </section>
+<a class="resume" href="resume.pdf">Download Resume</a>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>📍 Port Harcourt, Rivers State, Nigeria</p>
-    <p>📧 <a href="mailto:gotehmbaza@gmail.com">gotehmbaza@gmail.com</a></p>
-    <p>📞 +234 813 632 0012</p>
-    <p>🔗 <a href="https://linkedin.com/in/goteh-mbaza" target="_blank">LinkedIn</a> | 
-        <a href="https://github.com/Patrickmbaza" target="_blank">GitHub</a></p>
-  </section>
+</header>
 
-  <footer>
-    <p>&copy; 2025 Goteh Mbaza Patrick | Built & Hosted on <a href="https://pages.github.com/">GitHub Pages</a></p>
-  </footer>
+<nav>
 
-  <script>
-    // Intersection Observer for fade/slide animations
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.2 });
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#ai">AI Engineering</a>
+<a href="#projects">Projects</a>
+<a href="#github">GitHub</a>
+<a href="#contact">Contact</a>
 
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-  </script>
+</nav>
+
+<section id="about" class="about">
+
+<h2>About Me</h2>
+
+<p>
+
+DevOps & AI Engineer with 4+ years of experience designing scalable cloud infrastructure and deploying intelligent systems. I specialize in AWS, Kubernetes, CI/CD pipelines, and automation using Terraform and modern DevOps practices.
+
+</p>
+
+<p>
+
+My expertise spans cloud architecture, AI-powered SaaS applications, infrastructure automation, and platform engineering.
+
+</p>
+
+<p>
+
+I focus on building reliable, scalable, and intelligent platforms combining DevOps, AI systems, and modern cloud-native technologies.
+
+</p>
+
+</section>
+
+<section id="skills">
+
+<h2>Technical Skills</h2>
+
+<div class="skill">
+<div class="skill-name"><span>AWS / Cloud</span><span>95%</span></div>
+<div class="bar"><div class="fill" style="width:95%"></div></div>
+</div>
+
+<div class="skill">
+<div class="skill-name"><span>Kubernetes / Docker</span><span>90%</span></div>
+<div class="bar"><div class="fill" style="width:90%"></div></div>
+</div>
+
+<div class="skill">
+<div class="skill-name"><span>Terraform / IaC</span><span>92%</span></div>
+<div class="bar"><div class="fill" style="width:92%"></div></div>
+</div>
+
+<div class="skill">
+<div class="skill-name"><span>CI/CD Automation</span><span>93%</span></div>
+<div class="bar"><div class="fill" style="width:93%"></div></div>
+</div>
+
+<div class="skill">
+<div class="skill-name"><span>Python / AI Integration</span><span>85%</span></div>
+<div class="bar"><div class="fill" style="width:85%"></div></div>
+</div>
+
+</section>
+
+<section id="ai">
+
+<h2>AI Engineering</h2>
+
+<div class="ai">
+
+<p>
+
+I build and deploy AI-powered SaaS platforms, intelligent automation systems, and AI-enhanced cloud applications. My work combines machine learning models with DevOps practices to deliver scalable intelligent systems.
+
+</p>
+
+<ul>
+
+<li>AI SaaS Platforms</li>
+<li>AI-Augmented Web Applications</li>
+<li>Serverless AI systems (AWS Lambda)</li>
+<li>MLOps & AI Deployment Pipelines</li>
+<li>AI-based Cybersecurity Analysis</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<section id="projects">
+
+<h2>Projects</h2>
+
+<div class="filters">
+
+<button onclick="filter('all')">All</button>
+<button onclick="filter('devops')">DevOps</button>
+<button onclick="filter('ai')">AI</button>
+
+</div>
+
+<div class="projects">
+
+<div class="card devops">
+
+<h3>Kubernetes Cluster Deployment</h3>
+
+<p>Provisioned production EKS clusters using Terraform and implemented Kubernetes networking and ALB ingress.</p>
+
+<a href="https://github.com/Patrickmbaza/EKS_deployment_service_scripts">Source Code</a>
+
+</div>
+
+<div class="card devops">
+
+<h3>3 Tier Kubernetes GitOps</h3>
+
+<p>Full GitOps deployment with dynamic PVC storage and Route53 DNS integration.</p>
+
+<a href="https://github.com/Patrickmbaza/3-Tier-K8s-Project-GitOps">Source Code</a>
+
+</div>
+
+<div class="card devops">
+
+<h3>Blue Green Deployment System</h3>
+
+<p>Zero downtime deployment pipeline with automated failover and Slack alerts.</p>
+
+<a href="https://github.com/Patrickmbaza/blue-green-nginx-failover">Source Code</a>
+
+</div>
+
+<div class="card ai">
+
+<h3>AI SaaS Application</h3>
+
+<p>Cloud native AI SaaS platform delivering machine learning services through APIs.</p>
+
+<a href="https://github.com/Patrickmbaza/AI-SAAS-APPLICATION">Source Code</a>
+
+</div>
+
+<div class="card ai">
+
+<h3>AI Augmented Web App</h3>
+
+<p>Web application enhanced with AI for real time predictions.</p>
+
+<a href="https://github.com/Patrickmbaza/AI-Augmented-Web-App">Source Code</a>
+
+</div>
+
+<div class="card ai">
+
+<h3>Consultation SaaS Platform</h3>
+
+<p>AI-powered consultation management SaaS platform with automation.</p>
+
+<a href="https://github.com/Patrickmbaza/Consultation-SaaS-App">Source Code</a>
+
+</div>
+
+<div class="card ai">
+
+<h3>Cyber AI Security Analysis</h3>
+
+<p>AI assisted cybersecurity analysis platform for anomaly detection.</p>
+
+<a href="https://github.com/Patrickmbaza/Cyber_Analysis_Project">Source Code</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="github" class="github">
+
+<h2>GitHub Contributions</h2>
+
+<p>Live contribution activity from GitHub</p>
+
+<img src="https://ghchart.rshah.org/Patrickmbaza" alt="GitHub chart">
+
+</section>
+
+<section id="contact" class="contact">
+
+<h2>Contact</h2>
+
+<p>📍 Port Harcourt, Nigeria</p>
+
+<p>📧 <a href="mailto:gotehmbaza@gmail.com">gotehmbaza@gmail.com</a></p>
+
+<p>📞 +234 8136320012</p>
+
+<p>
+
+<a href="https://github.com/Patrickmbaza">GitHub</a> |
+<a href="https://linkedin.com/in/goteh-mbaza">LinkedIn</a>
+
+</p>
+
+</section>
+
+<footer>
+
+<p>© 2026 Goteh Mbaza Patrick | DevOps & AI Engineer</p>
+
+</footer>
+
+<script>
+
+function filter(category){
+
+let cards=document.querySelectorAll(".card")
+
+cards.forEach(card=>{
+
+if(category==="all"){
+card.style.display="block"
+}
+else if(card.classList.contains(category)){
+card.style.display="block"
+}
+else{
+card.style.display="none"
+}
+
+})
+
+}
+
+</script>
 
 </body>
 </html>
