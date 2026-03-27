@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { getAiConfig, sendPortfolioQuestion } from './lib/ai'
 
 const coreSkills = [
   'AWS & Azure DevOps',
@@ -160,6 +161,12 @@ const focusAreas = [
   'AI-enabled product systems with production discipline',
 ]
 
+const starterQuestions = [
+  'What are Patrick’s strongest DevOps skills?',
+  'Which projects are most relevant for a platform engineering role?',
+  'How can I contact Patrick for an opportunity?',
+]
+
 function Section({ id, eyebrow, title, children }) {
   return (
     <section id={id} className="section reveal">
@@ -296,6 +303,126 @@ function SpotlightCarousel({ items }) {
   )
 }
 
+function AiAssistant() {
+  const config = getAiConfig()
+  const [question, setQuestion] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [messages, setMessages] = useState([
+    {
+      id: 'intro',
+      role: 'assistant',
+      content:
+        config.mode === 'live' && config.isLiveConfigured
+          ? 'Live AI mode is active. Ask about skills, projects, delivery experience, or how to reach Patrick.'
+          : 'Mock AI mode is active. Ask about skills, projects, or contact details to preview the assistant experience safely on GitHub Pages.',
+    },
+  ])
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+
+    const trimmedQuestion = question.trim()
+    if (!trimmedQuestion || isLoading) {
+      return
+    }
+
+    const nextHistory = [...messages, { id: crypto.randomUUID(), role: 'user', content: trimmedQuestion }]
+    setMessages(nextHistory)
+    setQuestion('')
+    setIsLoading(true)
+
+    try {
+      const result = await sendPortfolioQuestion(
+        trimmedQuestion,
+        nextHistory.map((item) => ({
+          role: item.role,
+          content: item.content,
+        })),
+      )
+
+      setMessages((current) => [
+        ...current,
+        {
+          id: crypto.randomUUID(),
+          role: 'assistant',
+          content: result.answer,
+        },
+      ])
+    } catch {
+      setMessages((current) => [
+        ...current,
+        {
+          id: crypto.randomUUID(),
+          role: 'assistant',
+          content:
+            'The live AI request failed. Keep using mock mode for Pages, or verify that VITE_API_BASE_URL points to a running backend.',
+        },
+      ])
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  return (
+    <div className="ai-assistant reveal">
+      <div className="ai-header">
+        <div>
+          <p className="spotlight-label">AI Assistant</p>
+          <h3>Ask Patrick</h3>
+        </div>
+        <span className={`ai-mode ${config.mode}`}>
+          {config.mode === 'live' && config.isLiveConfigured ? 'Live Mode' : 'Mock Mode'}
+        </span>
+      </div>
+
+      <p className="ai-description">
+        This assistant can answer questions about Patrick’s experience, projects, contact details,
+        and AI/DevOps focus areas. Use mock mode on GitHub Pages and switch to live mode when a
+        backend with an OpenAI key is available.
+      </p>
+
+      <div className="ai-starters">
+        {starterQuestions.map((item) => (
+          <button key={item} type="button" onClick={() => setQuestion(item)}>
+            {item}
+          </button>
+        ))}
+      </div>
+
+      <div className="ai-chatlog" aria-live="polite">
+        {messages.map((message) => (
+          <article key={message.id} className={`ai-message ${message.role}`}>
+            <span className="ai-role">{message.role === 'assistant' ? 'AI' : 'You'}</span>
+            <p>{message.content}</p>
+          </article>
+        ))}
+        {isLoading ? (
+          <article className="ai-message assistant loading">
+            <span className="ai-role">AI</span>
+            <p>Thinking...</p>
+          </article>
+        ) : null}
+      </div>
+
+      <form className="ai-form" onSubmit={handleSubmit}>
+        <label className="sr-only" htmlFor="ai-question">
+          Ask a question about Patrick
+        </label>
+        <textarea
+          id="ai-question"
+          value={question}
+          onChange={(event) => setQuestion(event.target.value)}
+          placeholder="Ask about skills, projects, DevOps experience, AI work, or contact details"
+          rows={3}
+        />
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Sending...' : 'Ask AI'}
+        </button>
+      </form>
+    </div>
+  )
+}
+
 export default function App() {
   const rootRef = useRef(null)
   const [activeSection, setActiveSection] = useState('about')
@@ -353,6 +480,9 @@ export default function App() {
           <a href="#skills" className={activeSection === 'skills' ? 'active' : ''}>
             Skills
           </a>
+          <a href="#assistant" className={activeSection === 'assistant' ? 'active' : ''}>
+            AI
+          </a>
           <a href="#projects" className={activeSection === 'projects' ? 'active' : ''}>
             Projects
           </a>
@@ -403,7 +533,7 @@ export default function App() {
               <span>Production mindset</span>
             </div>
             <div className="portrait-wrap">
-              <img src="/profile.jpg.webp" alt="Portrait of Goteh Mbaza Patrick" />
+              <img src="/profile-v2.jpg.webp" alt="Portrait of Goteh Mbaza Patrick" />
             </div>
             <div className="hero-card-body">
               <p className="availability">Available for DevOps, platform, and AI engineering roles</p>
@@ -465,6 +595,10 @@ export default function App() {
 
           <p className="section-label accent reveal">AI Engineering</p>
           <SkillGrid items={aiSkills} tone="accent" />
+        </Section>
+
+        <Section id="assistant" eyebrow="Interactive Layer" title="AI Assistant">
+          <AiAssistant />
         </Section>
 
         <Section id="projects" eyebrow="Selected Work" title="Projects">

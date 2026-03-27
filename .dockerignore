@@ -3,3 +3,12 @@ dist
 .git
 .github
 npm-debug.log*
+.env
+.env.*
+.env.local
+.env.*.local
+.env.server
+.env.server.local
+.DS_Store
+coverage
+profile.jpj.webp
